@@ -80,7 +80,6 @@ class OMXPlayer(object):
                 time.sleep(RETRY_DELAY)
         raise SystemError('DBus cannot connect to the OMXPlayer process')
 
-
     """ Utilities """
 
     def check_player_is_active(fn):
@@ -94,6 +93,9 @@ class OMXPlayer(object):
                 logger.info('Process is no longer alive, can\'t run command')
 
         return wrapped
+
+    def process_running(self):
+        return self._process.poll() is None
 
     """ ROOT INTERFACE METHODS """
 
